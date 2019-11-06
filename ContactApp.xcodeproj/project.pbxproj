@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6525B1522372F70100C9E8FB /* ContactService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6525B1512372F70100C9E8FB /* ContactService.swift */; };
+		6525B1552372FB3300C9E8FB /* ContactListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6525B1542372FB3300C9E8FB /* ContactListViewModel.swift */; };
 		E5542014233C620100214B66 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5542013233C620100214B66 /* AppDelegate.swift */; };
 		E5542016233C620100214B66 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5542015233C620100214B66 /* SceneDelegate.swift */; };
 		E554201D233C620300214B66 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E554201C233C620300214B66 /* Assets.xcassets */; };
@@ -17,6 +19,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		6525B1512372F70100C9E8FB /* ContactService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactService.swift; sourceTree = "<group>"; };
+		6525B1542372FB3300C9E8FB /* ContactListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactListViewModel.swift; sourceTree = "<group>"; };
 		E5542010233C620100214B66 /* ContactApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ContactApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E5542013233C620100214B66 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E5542015233C620100214B66 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -39,6 +43,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6525B1502372F6E600C9E8FB /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				6525B1512372F70100C9E8FB /* ContactService.swift */,
+			);
+			name = Service;
+			path = ContactApp/Service;
+			sourceTree = SOURCE_ROOT;
+		};
+		6525B1532372FB2500C9E8FB /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				6525B1542372FB3300C9E8FB /* ContactListViewModel.swift */,
+			);
+			name = ViewModel;
+			path = ContactApp/ViewModel;
+			sourceTree = SOURCE_ROOT;
+		};
 		E5542007233C620100214B66 = {
 			isa = PBXGroup;
 			children = (
@@ -69,6 +91,8 @@
 		E5542027233C635A00214B66 /* ContactList */ = {
 			isa = PBXGroup;
 			children = (
+				6525B1532372FB2500C9E8FB /* ViewModel */,
+				6525B1502372F6E600C9E8FB /* Service */,
 				E5542031233C646900214B66 /* Cell */,
 				E5542029233C637000214B66 /* ViewController */,
 				E5542028233C636600214B66 /* Models */,
@@ -190,8 +214,10 @@
 			files = (
 				E554202D233C642600214B66 /* Contact.swift in Sources */,
 				E5542033233C647600214B66 /* ContactListTableViewCell.swift in Sources */,
+				6525B1522372F70100C9E8FB /* ContactService.swift in Sources */,
 				E5542030233C646100214B66 /* ContactListViewController.swift in Sources */,
 				E5542014233C620100214B66 /* AppDelegate.swift in Sources */,
+				6525B1552372FB3300C9E8FB /* ContactListViewModel.swift in Sources */,
 				E5542016233C620100214B66 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -329,16 +355,16 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = B68EH8VRHF;
+				DEVELOPMENT_TEAM = Y4A47SK5QM;
 				INFOPLIST_FILE = ContactApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = id.ridhopratama.example.ContactApp;
+				PRODUCT_BUNDLE_IDENTIFIER = me.alhaz.test.ContactApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -347,16 +373,16 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = B68EH8VRHF;
+				DEVELOPMENT_TEAM = Y4A47SK5QM;
 				INFOPLIST_FILE = ContactApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = id.ridhopratama.example.ContactApp;
+				PRODUCT_BUNDLE_IDENTIFIER = me.alhaz.test.ContactApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

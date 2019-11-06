@@ -9,6 +9,7 @@
 import UIKit
 
 class ContactListViewController: UIViewController {
+    
     private let tableView: UITableView = {
         let tv = UITableView(frame: .zero, style: .plain)
         tv.register(ContactListTableViewCell.self, forCellReuseIdentifier: ContactListTableViewCell.reuseIdentifier)
@@ -19,27 +20,21 @@ class ContactListViewController: UIViewController {
         return tv
     }()
     
-    private let jsonDecoder: JSONDecoder = {
-        let decoder = JSONDecoder()
-        decoder.keyDecodingStrategy = .convertFromSnakeCase
-        
-        return decoder
-    }()
-    
-    private var rawContacts: [Contact] = []
-    private var contactCellData: [ContactListCellData] = []
+    private let viewModel = ContactListViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setupView()
-        self.fetchContacts()
+        self.setupViewModel()
+        
+        self.viewModel.fetchContactList()
     }
     
     private func setupView() {
         title = "Contact List"
         
-        tableView.delegate = self
-        tableView.dataSource = self
+        tableView.delegate = viewModel
+        tableView.dataSource = viewModel
         
         view.addSubview(tableView)
         NSLayoutConstraint.activate([
@@ -52,54 +47,18 @@ class ContactListViewController: UIViewController {
         view.backgroundColor = .white
     }
     
-    private func fetchContacts() {
-        let url = URL(string: "https://gist.githubusercontent.com/99ridho/cbbeae1fa014522151e45a766492233c/raw/e3ea7cf52a7de7872863f9b2350f2c434eb0fe2c/contacts.json")!
-        let task = URLSession.shared.dataTask(with: url) { [weak self, jsonDecoder] (data, response, error) in
-            if error != nil {
-                // do something with error
-                return
-            }
-            
-            guard let theData = data else {
-                // do something when data is null
-                return
-            }
-            
-            do {
-                let response = try jsonDecoder.decode(ContactListResponse.self, from: theData)
-                let contacts = response.data
-                
-                DispatchQueue.main.async {
-                    self?.rawContacts = contacts
-                    self?.contactCellData = contacts.map {
-                        ContactListCellData(imageURL: $0.imageUrl, name: $0.name)
-                    }
-                    
-                    self?.tableView.reloadData()
-                }
-            } catch {
-                // do something when failed response mapping
+    private func setupViewModel() {
+        viewModel.onDataReceived = { [tableView] in
+            DispatchQueue.main.async {
+                tableView.reloadData()
             }
         }
         
-        task.resume()
+        viewModel.onError = { error in
+            print(error)
+        }
     }
+    
 }
 
-extension ContactListViewController: UITableViewDelegate, UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return contactCellData.count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cellData = contactCellData[indexPath.row]
-        let cell = tableView.dequeueReusableCell(withIdentifier: ContactListTableViewCell.reuseIdentifier) as! ContactListTableViewCell
-        cell.configureCell(with: cellData)
-        
-        return cell
-    }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
-    }
-}
+
